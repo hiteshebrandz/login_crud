@@ -81,6 +81,10 @@ class ProductController extends Controller
         return redirect()->route('dashboard')->with('success', 'Product deleted successfully!');
     }
 
+    public function tst(){
+        echo 'this is test function';
+    }
+
     /**
      * Delete a product.
      */
