@@ -68,7 +68,7 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role' => 'user', 
+            'role' => 'user',
         ]);
     }
 
@@ -78,5 +78,21 @@ class AuthController extends Controller
         Auth::logout();
 
         return redirect('login')->with('success', 'You have been logged out successfully.');
+    }
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (!Auth::attempt($credentials)) {
+            return response()->json(['message' => 'Invalid login'], 401);
+        }
+
+        $user = Auth::user();
+        $token = $user->createToken('API Token')->plainTextToken;
+
+        return response()->json([
+            'token' => $token,
+            'user' => $user,
+        ]);
     }
 }

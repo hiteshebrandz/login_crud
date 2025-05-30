@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function ($table) {
-            $table->string('role')->default('user'); // default role is user
+            $table->string('role')->default('user'); 
         });
     }
 

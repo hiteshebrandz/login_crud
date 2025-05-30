@@ -20,6 +20,7 @@ Route::post('logout', function () {
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', [ProductController::class, 'index'])->name('dashboard');
 
+    Route::get('create',[ProductController::class, 'create']) -> name('create');
     Route::post('products', [ProductController::class, 'store'])->name('products.store');
     Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
